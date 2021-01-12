@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.learning.entities.Captains;
@@ -57,7 +57,6 @@ public class CaptainController {
 	// Saving Captains
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public ModelAndView saveCaptain(HttpServletRequest request, HttpServletResponse response,
-
 			@ModelAttribute("captains") Captains captains) {
 		System.out.println(captains.toString());
 		String check = request.getParameter("check");
@@ -92,12 +91,28 @@ public class CaptainController {
 
 	}
 
+	// Getting the Captains by ID
 	@RequestMapping("/update/{id}")
-	public ModelAndView updateCaptains(@PathVariable("id") long id, @ModelAttribute Captains captains) {
+	public ModelAndView getCaptainsByID(@PathVariable("id") long id, @ModelAttribute Captains captains) {
 		Captains captain = captainAmericaService.getCaptainById(captains);
 		modelandview.addObject("captains", captain);
 		modelandview.setViewName("update_form");
 		return modelandview;
+	}
+
+	//Updating the Captains
+	@RequestMapping(value = "/updatecaptain", method = RequestMethod.POST)
+	public ModelAndView updateCaptainsByID(@RequestParam long id, @ModelAttribute("captains") Captains captains) {
+		try {
+			
+			captainAmericaService.updateCaptains(captains, id);
+			return new ModelAndView("redirect:/index.html");
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("Profile not Updated");
+		}
+		return null;
 	}
 
 }

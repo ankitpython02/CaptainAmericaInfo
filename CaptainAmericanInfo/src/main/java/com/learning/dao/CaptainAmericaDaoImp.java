@@ -26,14 +26,14 @@ public class CaptainAmericaDaoImp implements CaptainAmericaDao {
 		this.sessionFactory = sessionFactory;
 	}
 
-	// Saving Captains or Updating the Captains
+	// Saving Captains
 	@Transactional
 	public boolean save(Captains captains) {
 		Boolean f = false;
 		Session session = this.sessionFactory.openSession();
 		Transaction trans = session.beginTransaction();
 		try {
-			session.saveOrUpdate(captains);
+			session.save(captains);
 			trans.commit();
 			session.close();
 			f = true;
@@ -116,6 +116,31 @@ public class CaptainAmericaDaoImp implements CaptainAmericaDao {
 
 		}
 		return captains;
+	}
+
+	public void updateCaptains(Captains captains, Long id) {
+		
+		Session session = this.sessionFactory.openSession();
+		Transaction trans = session.beginTransaction();
+		try {
+			String hql = "UPDATE Captains as c set name = :name, email = :email , about = :about "
+					+ "WHERE id = :cid";
+			Query query = session.createQuery(hql);
+			query.setParameter("name", captains.getName());
+			query.setParameter("email", captains.getEmail());
+			query.setParameter("about", captains.getAbout());
+			query.setParameter("cid", id);
+			int result = query.executeUpdate();
+			System.out.println("Profile Update " + result);
+			trans.commit();
+			session.close();
+		} catch (Exception e) {
+			trans.rollback();
+			session.close();
+			e.printStackTrace();
+		}
+		
+		
 	}
 	}
 

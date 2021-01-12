@@ -29,7 +29,7 @@
 					<p>Update Captains Details</p>
 				</div>
 				<div class="card-body">
-					<form id="reg-form" method="post" action="${pageContext.request.contextPath}/save" >
+					<form id="reg-form" method="post" action="${pageContext.request.contextPath}/updatecaptain?id=${captains.id}" modelAttribute="captains">
 					<div class="form-group">
 							<label for="Id">Captain ID</label> <input value="${captains.id}"><small class="form-text text-muted"></small>
 						</div>
@@ -52,11 +52,6 @@
 							<textarea name="about" class="form-control" id="about" rows="4"
 								placeholder="Enter Something about yourself">${captains.about}
 								</textarea>
-						</div>
-						<div class="form-group form-check">
-							<input type="checkbox" class="form-check-input" name="check"
-								id="check"> <label class="form-check-label" for="check">Terms
-								& Condition</label>
 						</div>
 						<!-- <br>
 						<div class="container text-center" id="loader">

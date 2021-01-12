@@ -41,5 +41,10 @@ public class CaptainAmericaServiceImpl implements CaptiansAmericaService {
 	public Captains getCaptainById(Captains captains) {
 		return captainAmericaDao.getCaptainById(captains);
 	}
+
+	public void updateCaptains(Captains captains , Long id) {
+		captainAmericaDao.updateCaptains(captains, id);
+		
+	}
 	
 }

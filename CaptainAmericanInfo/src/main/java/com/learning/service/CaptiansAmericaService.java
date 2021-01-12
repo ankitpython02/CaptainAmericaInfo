@@ -19,5 +19,8 @@ public interface CaptiansAmericaService
 	
 	//Fetching Captains By Id
 	public Captains getCaptainById(Captains captains);
+	
+	// Updating the Captains
+	public void updateCaptains(Captains captains, Long id);
 
 }
