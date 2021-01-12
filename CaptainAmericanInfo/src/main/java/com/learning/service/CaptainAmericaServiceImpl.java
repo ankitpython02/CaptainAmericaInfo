@@ -31,5 +31,15 @@ public class CaptainAmericaServiceImpl implements CaptiansAmericaService {
 	public List<Captains> getCaptains() {
 		return captainAmericaDao.getCaptains();
 	}
+
+	public void delete(Long id) 
+	{
+		captainAmericaDao.delete(id);
+	}
+
+
+	public Captains getCaptainById(Captains captains) {
+		return captainAmericaDao.getCaptainById(captains);
+	}
 	
 }

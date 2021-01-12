@@ -13,5 +13,11 @@ public interface CaptiansAmericaService
 	
 	//Fetching the Captains
 	public List<Captains> getCaptains();
+	
+	//deleting the captain
+	public void delete(Long id);
+	
+	//Fetching Captains By Id
+	public Captains getCaptainById(Captains captains);
 
 }

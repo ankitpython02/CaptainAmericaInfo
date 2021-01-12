@@ -2,6 +2,11 @@
 	pageEncoding="ISO-8859-1"%>
 	<%@page isELIgnored="false" %>
 	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%-- 	<%@page import="com.learning.entities.Captains"%> --%>
+<%-- 	<% Captains captain = new Captains(); --%>
+	
+	
+<%-- 	%> --%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,8 +39,13 @@
 							<td>${c.name}</td>
 							<td>${c.about}</td>
 							<td>${c.gender}</td>
+							<td>
+							<a href="update/${c.id}"><i class="fas fa-pen-nib"></i></a>
+							<a href="delete/${c.id}"><i class="fas fa-trash text-danger"></i></a>
+							</td>
 						</tr>
-					</c:forEach>
+						</c:forEach>
+					
 					</tbody>
 				</table>
 				<div class="container text-center">
